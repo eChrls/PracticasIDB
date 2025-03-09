@@ -1,6 +1,6 @@
 # Resumen del Repositorio
 
-Este repositorio contiene una colección de ejercicios y prácticas realizados durante un período de prácticas en una empresa. El contenido abarca diferentes aspectos del desarrollo web y la gestión de bases de datos.
+Este repositorio contiene una colección de ejercicios y prácticas realizados durante un período de prácticas en la empresa IDB. El contenido abarca diferentes aspectos del desarrollo web y la gestión de bases de datos.
 
 ## Tipos de Ejercicios y Prácticas
 
