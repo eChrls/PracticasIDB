@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>  
+        <title>Audizz - Rock </title>
+        <meta charset="UTF-8">
+        <link href="Estilos/estiloRock.css" rel="stylesheet">
+        <link href="Images/favicon.png" rel="shortcut icon">
+    </head>
+    <body>
+        <header>
+            <h5>Subscription service R7/day</h5>
+        
+        <nav>
+            <img src="Images/logo.png" >
+            <div><a href="rock.php" class="enlace" hidden>Rock</a></div>
+            <div><a href="login.php" class="enlace" hidden>Login</a></div>
+            <div><a href="contact.php" class="enlace">Contacto</a></div>
+        </nav>
+        </header>
+        <div class="claseDiv"></div>>
+    <main>
+        <p class="titulo">
+            Rock <span class="linea">CLICK TO DOWNLOAD!</span>
+        </p>
+        <div class="music">
+            <div class="track">
+                <img src="Images/musica.png" alt="I was made for loving you - Kiss">
+                <p class="titulo2">I was made for loving you - Kiss</p>
+            </div>
+            <div class="track">
+                <img src="Images/musica.png" alt="I was made for loving you - Kiss">
+                <p class="titulo2">I was made for loving you - Kiss</p>
+            </div>
+            <div class="track">
+                <img src="Images/musica.png" alt="I was made for loving you - Kiss">
+                <p class="titulo2">I was made for loving you - Kiss</p>
+            </div>
+            <div class="track">
+                <img src="Images/musica.png" alt="I was made for loving you - Kiss">
+                <p class="titulo2">I was made for loving you - Kiss</p>
+            </div>
+            <div class="track">
+                <img src="Images/musica.png" alt="I was made for loving you - Kiss">
+                <p class="titulo2">I was made for loving you - Kiss</p>
+            </div>
+            <div class="track">
+                <img src="Images/musica.png" alt="I was made for loving you - Kiss">
+                <p class="titulo2">I was made for loving you - Kiss</p>
+            </div>
+         
+           
+        </div>
+    </main>
+    
+        <footer>
+            <p>
+                This is a subscription service with premium features such as applications, emotions, wallpapers, videos, images, animated images. To take advantage of this service you need to be 18+ and have the bill payers permission. Service is available to users from South Africa only. If you have any queries while using this service or prior to subscribing, please contact our support email:info@audizz.fun. To exit this service, dial *135*997#. Support line: 0105970848. Tariff R7/day. General Terms and Conditions. Extra network charges may apply. ZALTON. WASPA member: 1619
+            <br><br>
+                © 2025Copyright Audizz. All Rights Reserved
+            </p>
+        </footer>
+
+    </body>
+    
+</html>

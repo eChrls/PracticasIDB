@@ -1,0 +1,219 @@
+nav img {
+    max-width: 15%; /* ancho máximo del 100% del contenedor */
+    height: 10%;   /* ajuste automático del alto */
+}
+
+body{
+    background-color: rgb(58, 58, 58);
+    
+}
+
+
+header{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-size: 100%;
+    position:fixed;
+    width: 100%;
+    
+    
+}
+
+.claseDiv{
+    margin-top: em;
+    margin-bottom: em;
+}
+h5{
+    padding-top: 1em;
+    padding-bottom: 1em;
+   
+    
+}
+
+nav{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-around;
+    position:fixed;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: rgb(122, 122, 122);
+    padding-top: 1em;
+    font-size: 1.5rem;
+    border-bottom: solid 1px white;
+    padding-bottom: 1em;
+    background-color: lightgray; 
+    width: 100%;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    min-height: auto;
+
+}
+
+.enlace{
+    color:inherit;
+    text-decoration: none;
+}
+.enlace:hover{
+    color: rgb(221, 107, 215);
+    
+}
+.music {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espacio entre los elementos */
+}
+
+.track {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-top: 1em;
+}
+
+.track img {
+    border: solid white 1px;
+    max-width: 200px;
+    max-height: 200px;
+    margin-bottom: 10px; /* Espacio entre la imagen y el texto */
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 50vh; 
+    padding: 4em 1em 2em 1em;
+    font-style: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 160%;
+    color: rgb(255, 255, 255);
+    margin-top: 8em;
+    margin-bottom: 6em;
+    margin-left: 2em;
+    margin-right: 2em;
+}
+
+
+.titulo{
+    padding: 1em 1em 1em 1em;
+    font-style: normal;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 80%;
+    color: rgb(255, 255, 255);
+    background-color: #9971b4;
+    margin: 0m 0em 0em 0em;
+    width: 90%;
+}
+#mainEdit{
+
+    margin-top: 5em;;
+}
+
+
+.titulo2{
+    padding: 0em 0em 0em 0em;
+    font-style: normal;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 60%;
+    color: rgb(255, 255, 255);
+    background-color: #9971b400;
+    margin: 0em 0em 0em 0em;
+    width: 100%;
+}
+
+
+.linea{
+    padding: 1em 1em 1em 0em;
+    font-style: normal;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 60%;
+    color: rgb(255, 255, 255);
+    background-color: #9971b4;
+    margin: 0em 0em 0em 0em;
+    width: 80%;
+}
+
+
+.edit{
+    text-align: left;
+    padding: 0.1em 0em 0.1em 0em;
+    font-style: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 120%;
+    color: white(255, 255, 255, 0.719);
+}
+textarea{
+    text-align: center;
+    padding: 1.5em 0em 1em 0em;
+    font-style: normal;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 120%;
+    color: rgba(104, 104, 104, 0.719);
+    
+}
+
+.form-style {
+    display: flex;
+    justify-content: center;  
+    align-items: center;     
+    height: 100vh;          
+}
+/* CSS */
+.btn {
+    display: flex;
+    justify-content: center;  
+    align-items: center;     
+    margin-top: 1em;
+    padding: 20px 363px; /* Relleno interior del botón */
+    border: none; /* Sin bordes */
+    border-radius: 5px;  /* Bordes redondeados */
+    cursor: pointer;  /* Cursor cambia a mano al pasar sobre el botón */
+    font-size: 20px;  /* Tamaño de la fuente */
+    transition: background-color 0.3s ease; /* Transición suave para cambio de color */
+
+    /* Puedes añadir más estilos globales para la clase btn */
+}
+
+.btn-primary {
+    background-color: #ac71b4;  /* Color de fondo azul */
+    color: white;  /* Color del texto */
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.btn-primary:hover {
+    background-color: #618cbb; /* Color de fondo al pasar el ratón */
+}
+
+/* Opcional: estilos adicionales para mejorar la accesibilidad */
+.btn:focus {
+    outline: none; /* Quitar el borde del enfoque predeterminado */
+    box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.25); /* Añadir sombra para el enfoque */
+}
+
+footer {
+    margin-top: 6em;
+    border-top: 5px solid #a73985;
+    background-color: #ddd;
+    color: #333;
+    display: flex;
+    text-align: left;
+    
+    
+  
+}
+
+footer p{
+    color: rgb(83, 80, 80);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 90%;
+    text-align: left;
+    padding: 3em 5em 3em 5em;
+}

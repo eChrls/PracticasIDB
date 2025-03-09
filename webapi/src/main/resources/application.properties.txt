@@ -1,0 +1,8 @@
+spring.application.name=webapi
+
+#Mysql 
+spring.datasource.driverClassName=com.mysql.cj.jdbc.Driver
+spring.datasource.url=jdbc:mysql://localhost:3306/webapi?createDatabaseIfNotExist=true   
+spring.datasource.username=root
+spring.datasource.password=1234
+spring.jpa.hibernate.ddl-auto=update 

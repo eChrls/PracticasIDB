@@ -1,0 +1,2 @@
+spring.application.name=zelda
+url.api.zelda = https://zelda.fanapis.com/api/games?limit=2

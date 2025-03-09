@@ -1,0 +1,23 @@
+
+
+services:
+  mysql:
+    image: 'bitnami/mysql:latest'
+    environment:
+      - ALLOW_EMPTY_PASSWORD=yes
+    ports:
+      - '3306:3306'
+    restart: always
+    volumes:
+      - 'mysql_data:/bitnami/mysql/data'
+  apache:
+    build: PhpWeb
+    ports:
+      - '80:80'
+    restart: always
+    volumes:
+      - './PhpWeb/web:/var/www/html'
+
+volumes:
+  mysql_data:
+  postgresql_data:

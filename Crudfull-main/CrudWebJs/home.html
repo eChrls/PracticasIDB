@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+
+<body>
+    <main>
+        <p hidden id="errorDelete"></p>
+        <table class="table table-dark table-striped table-bordered">
+            <thead>
+                <th>id</th>
+                <th>name</th>
+                <th>email</th>
+                <th>phone</th>
+                <th>address</th>
+                <th>city</th>
+                <th>age</th>
+                <th>course</th>
+                <th>dateInit</th>
+                <th>actions</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deleteSchoolModal">
+            delete School
+        </button>
+
+        <p hidden id="errorInsertS"></p>
+
+        <form action="" class="d-flex flex-row flex-nowrap justify-content-around">
+            <label for="name" class="me-2">name: </label>
+            <input type="text" name="name" id="name" class="insert form-control w-25 me-4">
+            <label for="email" class="me-2">email: </label>
+            <input type="email" name="email" id="emial" class="insert form-control w-25 me-4"> 
+            <label for="phone" class="me-2">phone: </label>
+            <input type="tel" name="phone" id="phone" class="insert form-control w-25 me-4">
+            <label for="address" class="me-2">address: </label>
+            <input type="text" name="address" id="address" class="insert form-control w-25 me-4">
+            <label for="city" class="me-2">city: </label>
+            <input type="text" name="city" id="city" class="insert form-control w-25 me-4">
+            <label for="age" class="me-2">age: </label>
+            <input type="number" name="age" id="age" class="insert form-control w-25 me-4">
+            <label for="course" class="me-2">course: </label>
+            <select name="course" id="course" class="insert form-select w-25 me-4">
+                <option value="CHILDISH">childish</option>
+                <option value="ELEMENTARY">elementary</option>
+                <option value="INTERMEDIATE">intermediate</option>
+                <option value="ADVANCED">advance</option>
+            </select>
+            <label for="date" class="me-2">date: </label>
+            <input type="date" name="dateInit" id="dateInit" class="insert form-control w-25 me-4">
+            <button class="btn btn-secondary" id="buttonInsertStudent"> send</button>
+        </form>
+
+        <!-- Modal -->
+        <div class="modal fade" id="deleteSchoolModal" tabindex="-1" aria-labelledby="deleteSchoolModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>Do you want to delete the school?</p>
+                        <button type="button" class="btn btn-danger" id="deleteSchool">delete</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="deleteStudent" tabindex="-1" aria-labelledby="deleteStudentLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p hidden id="errorDeleteS"></p>
+
+                        <p>Do you want to delete the student?</p>
+                            <input type="hidden" name="id" id="idStudentDetelete">
+                            <button type="button" class="btn btn-danger" id="deleteStudentB">delete</button>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="updateStudent" tabindex="-1" aria-labelledby="updateStudentLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="updateStudentLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p hidden id="errorUpdateS"></p>
+                        <form action="">
+                            <input type="hidden" name="id" class="update" >
+                            <label for="name" class="me-2">name: </label>
+                            <input type="text" name="name" id="name" class="update form-control  me-4">
+                            <label for="email" class="me-2">email: </label>
+                            <input type="email" name="email" id="emial" class="update form-control  me-4"> 
+                            <label for="phone" class="me-2">phone: </label>
+                            <input type="tel" name="phone" id="phone" class="update form-control me-4">
+                            <label for="address" class="me-2">address: </label>
+                            <input type="text" name="address" id="address" class="update form-control  me-4">
+                            <label for="city" class="me-2">city: </label>
+                            <input type="text" name="city" id="city" class="update form-control me-4">
+                            <label for="age" class="me-2">age: </label>
+                            <input type="number" name="age" id="age" class="update form-control me-4">
+                            <label for="course" class="me-2">course: </label>
+                            <select name="course" id="course" class="update form-select me-4">
+                                <option value="CHILDISH">childish</option>
+                                <option value="ELEMENTARY">elementary</option>
+                                <option value="INTERMEDIATE">intermediate</option>
+                                <option value="ADVANCED">advance</option>
+                            </select>
+                            <label for="date" class="me-2">date: </label>
+                            <input type="date" name="dateInit" id="dateInit" class="update form-control me-4">
+                            <button class="btn btn-secondary" id="buttonUpdateStudent"> send</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+<script src="js/getStudients.js"></script>
+<script src="js/deleteSchool.js"></script>
+<script src="js/deleteStudent.js"></script>
+<script src="js/insertStudent.js"></script>
+<script src="js/updateStudents.js"></script>
+</html>
