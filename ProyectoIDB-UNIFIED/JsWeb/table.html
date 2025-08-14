@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Gestión de Estudiantes</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+        }
+        
+        body {
+            padding: 2rem;
+            background-color: #f5f5f5;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .school-name {
+            font-size: 1.5rem;
+            color: #349e9e;
+        }
+
+        .header-btn {
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .delete-school-btn {
+            background-color: #dc3545;
+        }
+
+        .delete-school-btn:hover {
+            background-color: #c82333;
+        }
+
+        .modify-school-btn {
+            background-color: #4a90e2;
+        }
+
+        .modify-school-btn:hover {
+            background-color: #357abd;
+        }
+
+        .logout-btn {
+            background-color: #6c757d;
+        }
+
+        .logout-btn:hover {
+            background-color: #545b62;
+        }
+
+        .table-container {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f8f9fa;
+            color: #495057;
+        }
+
+        .actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            padding: 0.4rem 0.8rem;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .edit-btn {
+            background-color: #4a90e2;
+            color: white;
+        }
+
+        .edit-btn:hover {
+            background-color: #357abd;
+        }
+
+        .add-btn {
+            background-color: #28a745;
+            color: white;
+        }
+
+        .add-btn:hover {
+            background-color: #218838;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+            color: white;
+        }
+
+        .delete-btn:hover {
+            background-color: #c82333;
+        }
+
+        #loading {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        #error-message {
+            color: red;
+            text-align: center;
+            padding: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 id="schoolName" class="school-name">Cargando...</h1>
+        <div id="error-message" style="display: none;"></div>
+        <div class="header-actions">
+            <button id="modify_school_btn" class="header-btn modify-school-btn">Modificar Escuela</button>
+            <button id="delete_school_btn" class="header-btn delete-school-btn">Eliminar Escuela</button>
+            <button id="logout_btn" class="header-btn logout-btn">Cerrar Sesión</button>
+        </div>
+    </div>
+
+    <div class="table-container">
+        <div id="loading">Cargando estudiantes...</div>
+        <div id="error-message" style="display: none;"></div>
+        <table id="students-table" style="display: none;">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Apellidos</th>
+                    <th>Edad</th>
+                    <th>Email</th>
+                    <th>Ciudad</th>
+                    <th>Grado</th>
+                    <th>Fecha Grado</th>
+                    <th>Timestamp</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="students-body">
+                <!-- Datos de estudiantes se cargarán dinámicamente -->
+            </tbody>
+        </table>
+    </div>
+
+     <!-- MODAL DEL BOTON EDIT-->
+    <div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="edit-btnLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="edit-btnLabel">Modificar alumno</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editStudentId"> <!-- ID oculto para la API -->
+
+                    <label for="editNombre">Nombre:</label>
+                    <input type="text" id="editNombre" class="form-control" placeholder="Nombre actual">
+
+                    <label for="editApellidos">Apellidos:</label>
+                    <input type="text" id="editApellidos" class="form-control" placeholder="Apellidos actuales">
+
+                    <label for="editEdad">Edad:</label>
+                    <input type="number" id="editEdad" class="form-control" placeholder="Edad actual">
+
+                    <label for="editEmail">Email:</label>
+                    <input type="email" id="editEmail" class="form-control" placeholder="Correo actual">
+
+                    <label for="editCiudad">Ciudad:</label>
+                    <input type="text" id="editCiudad" class="form-control" placeholder="Ciudad actual">
+
+                    <label for="editGrado">Grado:</label>
+                    <input type="text" id="editGrado" class="form-control" placeholder="Grado actual">
+
+                    <label for="editFechaInicio">Fecha inicio de Grado:</label>
+                    <input type="date" id="editFechaInicio" class="form-control">  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" id ="btn-edit">Modificar cambios</button>
+            </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MODAL DEL BOTON ADD-->
+      <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="add-btnLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="add-btnLabel">Añadir alumno</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="addForm">
+                    <input type="hidden" id="addStudentId"> <!-- ID oculto para la API -->
+
+                    <label for="addNombre">Nombre:</label>
+                    <input type="text" id="addNombre" class="form-control" placeholder="Nombre actual">
+
+                    <label for="addApellidos">Apellidos:</label>
+                    <input type="text" id="addApellidos" class="form-control" placeholder="Apellidos actuales">
+
+                    <label for="addEdad">Edad:</label>
+                    <input type="number" id="addEdad" class="form-control" placeholder="Edad actual">
+
+                    <label for="addEmail">Email:</label>
+                    <input type="email" id="addEmail" class="form-control" placeholder="Correo actual">
+
+                    <label for="addCiudad">Ciudad:</label>
+                    <input type="text" id="addCiudad" class="form-control" placeholder="Ciudad actual">
+
+                    <label for="addGrado">Grado:</label>
+                    <select id="addGrado" class="form-control" placeholder="Grado actual">
+                        <option value="PRIMERO">1º Curso</option>
+                        <option value="SEGUNDO">2º Curso</option>
+                        <option value="TERCERO">3º Curso</option>
+                    </select>
+                    
+
+                    <label for="addFechaInicio">Fecha inicio de Grado:</label>
+                    <input type="date" id="addFechaInicio" class="form-control">  
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn btn-primary" id ="btn-add">Guardar cambios</button>
+            </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+        <!-- MODAL DEL BOTON DELETE-->
+      <div class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="delete-btnLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+                <form class="deleteForm">
+                 <input type="hidden" id="deleteStudentId"> <!-- ID oculto para la API -->
+                 </form>
+              <h1 class="modal-title fs-5" id="delete-btnLabel">¿Está seguro que quiere borrar este alumno?</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Atrás</button>
+              <button type="button" class="btn btn-primary" id ="btn-delete">Sí, eliminar.</button>
+            </form>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <script>
+        // Función para pasar parámetros de login a la página de gestión
+        function redirectToSchoolManagement(userId, password, schoolName) {
+            // Codificar los parámetros para URL
+            const encodedSchoolName = encodeURIComponent(schoolName);
+            window.location.href = `school-management.html?userId=${userId}&password=${password}&schoolName=${encodedSchoolName}`;
+        }
+    </script>
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="table.js">      
+    </script>
+</body>
+</html>
